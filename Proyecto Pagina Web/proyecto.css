@@ -1,0 +1,222 @@
+/*Tipo de letra que se utiliza en la pagina*/
+    *{
+        font-family: 'Righteous', cursive;
+    }
+
+/* Todo el encabezado de la pagina */
+    nav {
+        padding: 5px;
+        display: flex;
+        border: 2px solid #000;
+        background-color:  rgba(50, 50, 50);
+        width: 90%;
+        position: fixed;
+        top: 0;
+        max-height: 125px; 
+        justify-content: space-between;  
+        margin: 0 auto; 
+        text-decoration: none;
+    }    
+
+        .volver-arriba {
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            user-select: none;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            flex-wrap: wrap;
+            position: sticky;
+            
+        }
+
+    ul, ol {
+        list-style:none;
+    }
+    .centrarMenu{
+    position: absolute;
+    top: 50px; 
+    left: 60%; 
+    
+    z-index: 1000;
+    }
+    @media only screen and (max-width: 600px)
+     {
+        .centrarMenu{
+        position: absolute;
+        top: 50px; 
+        left: 60%; 
+        transform: translateX(-50%);
+        z-index: 1000; 
+        }
+    }
+        .contenidonav > li {
+            float:left;
+        }
+
+        .contenidonav li a {
+            background-color:  rgba(50, 50, 50, 0.8); 
+            color:#ffffff;
+            text-decoration:none;
+            padding:10px 20px;
+            display:block;
+        }
+
+        .contenidonav li a:hover {
+            background-color:  rgba(50, 50, 50, 0.8); 
+        }
+
+        .contenidonav li ul {
+            display:none;
+            position:absolute;
+            min-width:140px;
+        }
+
+        .contenidonav li:hover > ul {
+            display:block;
+        }
+
+        .contenidonav li ul li {
+            position:relative;
+        }
+
+        .contenidonav li ul li ul {
+            right:-140px;
+            top:0px;
+        }           
+
+    scroll-container {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+        width: 350px;
+        height: 100px;
+        overflow-y: scroll;
+        scroll-behavior: smooth;
+        border: 2px solid #000;
+        background-color: rgb(50, 50,50);
+    }
+
+/* Todo el cuerpo de la pagina */
+    body {
+        width: 95%;
+        margin: 0 auto;
+        background-color: lightskyblue;
+    }
+
+    .tituloMain{
+        padding: 20px;
+        border: 2px solid #000;
+        background-image: url('img/imgp.png');
+        background-size: cover;
+        border-radius: 15px;
+        width: 80%; 
+        box-shadow: 5px 5px 10px rgba(0, 0, 0,05);
+        margin: 0 auto; 
+        flex-wrap: wrap;
+        color: whitesmoke;
+        text-decoration: none;
+    }    
+
+    main {
+        display: flex;
+        align-content: center;
+        padding: 20px;
+
+    }
+
+        .portada img {
+            height: 75%;
+            max-width: 75%;
+            width: 75%;
+            display: block; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+        .seccion {
+            padding: 20px;
+            border: 2px solid #000;
+            background-color: rgba(255, 255, 255, 0.857);
+            border-radius: 30px;
+            width: 70%; 
+            box-shadow: 5px 5px 10px rgba(0, 0, 0,05);
+            max-width: 500x; 
+            margin: 0 auto; 
+        }   
+        .oculto {
+            display: none;
+          }
+
+/* Todo el pie de la pagina */
+    footer {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px;
+        background-color: #333;
+        color: #fff;
+        border: 2px solid #000;
+    }
+
+/* Imagenes de la pagina */
+    .logo{
+        width: 100px; 
+        height: 100px;
+        align-content: left;
+    }
+    .imagen {
+        width: 50px; 
+        height: 50px;
+        transition: transform 0.3s ease-in-out;
+        margin-right: 10px;
+    }
+   
+    .imagen:hover {
+        transform: scale(1.3);
+    }
+
+    
+
+    .imagen:hover + .informacion {
+        display: block;
+    }
+
+    .inf-img {
+        width: 50%;
+        max-width: 100%;
+        height: auto;
+        display: flex;
+        align-self: center;
+        align-content: center;
+    }
+
+    
+    .tamaño{
+        font-size: 36px;
+    }
+
+
+.inf-text{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+
+.horizontal {
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+  
+h1, a {
+    margin: 10px; 
+}
+
+    
+
+
