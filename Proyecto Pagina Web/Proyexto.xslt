@@ -19,30 +19,29 @@
         <nav>
           <img src="img/LOGO.png" class="logo"/>
           <ul class="contenidonav">
-            <li>
-              <a>Casas</a>
-              <ul class="centrarMenu">
-                <xsl:for-each select="//contenido">
-                  <li>
-                    <a href="#{atributos/atributo[@nombre='ID-ENTIDAD']}">
-                      <xsl:value-of select="atributos/atributo[@nombre='NOMBRE']"/>
-                    </a>
-                  </li>
-                </xsl:for-each>
-              </ul>
-            </li>
-            <li>
-              <a class="volver-arriba" href="#">Volver Arriba</a>
-            </li>
+              <li>
+                  <a>Casas</a>
+                  <ul class="centrarMenu">
+                      
+                      <xsl:for-each select="//contenido">
+                          <li>
+                              <a href="#{generate-id()}">
+                                  <xsl:value-of select="atributos/atributo[@nombre='NOMBRE']"/>
+                              </a>
+                          </li>
+                      </xsl:for-each>
+                  </ul>
+              </li>
+              <li>
+                  <a class="volver-arriba" href="#">Volver Arriba</a>
+              </li>
           </ul>
         </nav>
 
         <br/><br/><br/><br/><br/><br/>
         <section class="tituloMain">
-        
           <h3><xsl:value-of select="nombre"/></h3>
-          <p>El Ayuntamiento de Madrid ofrece varios recursos para ayudar a menores y familias en situaciones difíciles, incluyendo Centros de Apoyo a las Familias, Centros de Atención a la Infancia, Puntos de Encuentro Familiar, Centros de Día Infantiles y Centros de Apoyo para Adolescentes. Puedes acceder a más información a través del Portal de Datos Abiertos del Ayuntamiento.
-          </p>
+          <p>El Ayuntamiento de Madrid ofrece varios recursos para ayudar a menores y familias en situaciones difíciles, incluyendo Centros de Apoyo a las Familias, Centros de Atención a la Infancia, Puntos de Encuentro Familiar, Centros de Día Infantiles y Centros de Apoyo para Adolescentes. Puedes acceder a más información a través del Portal de Datos Abiertos del Ayuntamiento.</p>
         </section>
       </body>
     </html>
@@ -50,34 +49,24 @@
 
   <xsl:template match="contenido">
     <br/>
-    <section class="seccion">
-    <div class="horizontal">
-        <h1 class="tamaño"> <xsl:value-of select="atributos/atributo[@nombre='NOMBRE']"/> </h1>               
-        <a>
-          <xsl:attribute name="href">
-            <xsl:text>https://www.google.com/maps?q=</xsl:text> 
-            <xsl:value-of select="atributos/atributo/atributo[@nombre='LATITUD']"/>
-            <xsl:text>,</xsl:text> 
-            <xsl:value-of select="atributos/atributo/atributo[@nombre='LONGITUD']"/>
-          </xsl:attribute>
-
+    <section class="seccion" id="{generate-id()}">
+      <div class="horizontal">
+        <h1 class="tamaño"><xsl:value-of select="atributos/atributo[@nombre='NOMBRE']"/></h1>
+        <a href="https://www.google.com/maps?q={atributos/atributo[@nombre='LATITUD']},{atributos/atributo[@nombre='LONGITUD']}">
           <img src="img/u.png" class="imagen" alt="Enlace a Google Maps"/>
         </a>
-        <a>
-          <xsl:attribute name="href">
-          <xsl:text>tel:</xsl:text> 
-            <xsl:value-of select="atributos/atributo/atributo[@nombre='TELEFONO']"/>
-          </xsl:attribute>
+        <a href="tel:{atributos/atributo[@nombre='TELEFONO']}">
           <img src="img/c.png" class="imagen" alt="Imagen4" />
         </a>
+      </div>
+      <p><xsl:value-of select="atributos/atributo[@nombre='DESCRIPCION-ENTIDAD']"/></p>
+      <h4>HORARIO</h4>
+      <p><xsl:value-of select="atributos/atributo[@nombre='HORARIO']"/></p>
+      <h4>EQUIPAMIENTO</h4>
+      <p><xsl:value-of select="atributos/atributo[@nombre='EQUIPAMIENTO']"/></p>
+      <h4>TRANSPORTE DISPONIBLES</h4>
+      <p><xsl:value-of select="atributos/atributo[@nombre='TRANSPORTE']"/></p>
 
-    </div>
-    <p><xsl:value-of select="atributos/atributo[@nombre='DESCRIPCION-ENTIDAD']"/></p>
-    <h4>HORARIO</h4>
-        <p><xsl:value-of select="atributos/atributo[@nombre='HORARIO']"/></p>
-
-        <h4>EQUIPAMIENTO</h4>
-        <p><xsl:value-of select="atributos/atributo[@nombre='EQUIPAMIENTO']"/></p>
     </section>
   </xsl:template>
 </xsl:stylesheet>
