@@ -2,7 +2,6 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:output method="html" encoding="UTF-8" indent="yes"/>
 
-  <!-- Plantilla para el elemento infoDataset -->
   <xsl:template match="infoDataset">
     <html lang="es">
       <head>
@@ -17,14 +16,19 @@
         <link href="https://fonts.googleapis.com/css2?family=Righteous&amp;display=swap" rel="stylesheet"/>
       </head>
       <body>
-        <!-- Navegación -->
         <nav>
           <img src="img/LOGO.png" class="logo"/>
           <ul class="contenidonav">
             <li>
-              <a href="">Casas</a>
+              <a>Casas</a>
               <ul class="centrarMenu">
-                <xsl:apply-templates select="//contenido//[@nombre='NOMBRE']"/>
+                <xsl:for-each select="//contenido">
+                  <li>
+                    <a href="#{atributos/atributo[@nombre='ID-ENTIDAD']}">
+                      <xsl:value-of select="atributos/atributo[@nombre='NOMBRE']"/>
+                    </a>
+                  </li>
+                </xsl:for-each>
               </ul>
             </li>
             <li>
@@ -33,22 +37,47 @@
           </ul>
         </nav>
 
-        <!-- Contenido principal -->
+        <br/><br/><br/><br/><br/><br/>
         <section class="tituloMain">
+        
           <h3><xsl:value-of select="nombre"/></h3>
-          <p><xsl:value-of select="descripcion"/></p>
+          <p>El Ayuntamiento de Madrid ofrece varios recursos para ayudar a menores y familias en situaciones difíciles, incluyendo Centros de Apoyo a las Familias, Centros de Atención a la Infancia, Puntos de Encuentro Familiar, Centros de Día Infantiles y Centros de Apoyo para Adolescentes. Puedes acceder a más información a través del Portal de Datos Abiertos del Ayuntamiento.
+          </p>
         </section>
       </body>
     </html>
   </xsl:template>
 
-  <!-- Plantilla para el elemento contenido -->
   <xsl:template match="contenido">
+    <br/>
     <section class="seccion">
-      <!-- Mostrar atributos como texto separado por saltos de línea -->
-      <xsl:for-each select="atributos/atributo">
-        <p><xsl:value-of select="concat(@nombre, ': ', .)"/></p>
-      </xsl:for-each>
+    <div class="horizontal">
+        <h1 class="tamaño"> <xsl:value-of select="atributos/atributo[@nombre='NOMBRE']"/> </h1>               
+        <a>
+          <xsl:attribute name="href">
+            <xsl:text>https://www.google.com/maps?q=</xsl:text> 
+            <xsl:value-of select="atributos/atributo/atributo[@nombre='LATITUD']"/>
+            <xsl:text>,</xsl:text> 
+            <xsl:value-of select="atributos/atributo/atributo[@nombre='LONGITUD']"/>
+          </xsl:attribute>
+
+          <img src="img/u.png" class="imagen" alt="Enlace a Google Maps"/>
+        </a>
+        <a>
+          <xsl:attribute name="href">
+          <xsl:text>tel:</xsl:text> 
+            <xsl:value-of select="atributos/atributo/atributo[@nombre='TELEFONO']"/>
+          </xsl:attribute>
+          <img src="img/c.png" class="imagen" alt="Imagen4" />
+        </a>
+
+    </div>
+    <p><xsl:value-of select="atributos/atributo[@nombre='DESCRIPCION-ENTIDAD']"/></p>
+    <h4>HORARIO</h4>
+        <p><xsl:value-of select="atributos/atributo[@nombre='HORARIO']"/></p>
+
+        <h4>EQUIPAMIENTO</h4>
+        <p><xsl:value-of select="atributos/atributo[@nombre='EQUIPAMIENTO']"/></p>
     </section>
   </xsl:template>
 </xsl:stylesheet>
